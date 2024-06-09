@@ -1,0 +1,89 @@
+<ng-container *ngIf="equipo?.portalCategoria === portal || portal === 'all'">
+  <div class="equipo">
+
+    <div class="header">
+
+        <h2 class="title">Mantenimientos </h2>
+        <button mat-mini-fab color="accent" [routerLink]="['/mantenimiento',equipo?.codigo]">
+            <mat-icon class="add-course-btn">add</mat-icon>
+        </button>
+    </div>
+
+    <mat-card class="custom-card">
+      <mat-card-content>
+        <h3>EQUIPO</h3>
+        <h3>Código: {{equipo?.codigo}}</h3>
+        <h3>Dispositivo: {{equipo?.tipoDispositivo}}</h3>
+        <h3>Serie: {{equipo?.serie}}</h3>
+      </mat-card-content>
+    </mat-card>
+    
+    <img class="equipo-thumbnail mat-elevation-z8">
+    <div class="spinner-container" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <mat-table class="mant-table mat-elevation-z8" [dataSource]="mantenimientos">
+        <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef [style.width]="'100px'">Nombre Responsable</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let mantenimiento">{{mantenimiento.nombre}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="cedula">
+            <mat-header-cell *matHeaderCellDef>No.cedula</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let mantenimiento">{{mantenimiento.cedula}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="telefono">
+            <mat-header-cell *matHeaderCellDef>Telefono</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let mantenimiento">{{mantenimiento.telefono}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="tMantenimiento">
+            <mat-header-cell *matHeaderCellDef>Tipo Mantenimiento</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let mantenimiento">{{mantenimiento.tMantenimiento}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="descripcion">
+            <mat-header-cell *matHeaderCellDef>Descripcion</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let mantenimiento">{{mantenimiento.descripcion}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fechaInicio">
+            <mat-header-cell *matHeaderCellDef>fecha Inicio</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let mantenimiento">{{mantenimiento.fechaInicio}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fechaFinal">
+            <mat-header-cell *matHeaderCellDef>Fecha Final</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let mantenimiento">{{mantenimiento.fechaFinal}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let mantenimiento">
+              <button mat-icon-button class="mat-raised-button mat-accent" 
+              (click)="editMantenimineto(equipo, mantenimiento)">
+                <mat-icon >edit</mat-icon>
+              </button>
+              <button mat-mini-fab color="warn" (click)="confirmDelete(equipo,mantenimiento)"  *ngIf="rol === 'Coordinador'">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <div class="container">
+        <button class="centered-button" mat-raised-button color="primary" *ngIf="mostrarVerMas" (click)="loadMore()">
+          Ver más
+        </button>
+        <h3 class="title-2">Buscar mantenimientos</h3>
+        <div class="search-bar">
+          <input type="text" [(ngModel)]="consulta" placeholder="Ingrese nombre">
+          <button class="search-button" (click)="buscarMantenimiento(equipo)">Buscar</button>
+        </div>
+      </div>
+      
+      <div class="bottom-toolbar">
+        <button *ngIf="mostrarListarEquipos" (click)="listarTodosEquipos()"class="list-button" mat-raised-button color="primary">Listar Mantenimientos</button>
+        <button class="back-button" mat-raised-button color="primary" mat-button routerLink="/main">Volver</button>
+      </div>
+</div>
+</ng-container>
+
+
+
+

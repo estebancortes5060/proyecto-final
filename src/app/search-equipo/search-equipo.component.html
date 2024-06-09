@@ -1,0 +1,33 @@
+<div class="equipo-panel">
+  
+    <div class="header">
+      <h2 class="title">Buscar Equipo</h2>
+    </div>
+
+    <form [formGroup]="formulario">
+      <div class="header">
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Ingrese serie del equipo</mat-label>
+          <input matInput type="text" formControlName="codigo" placeholder="Ingrese serie">
+        </mat-form-field>
+        
+        <button *ngIf="rol === 'Coordinador'" (click)="buscarEquipo()" mat-mini-fab color="accent">
+          <mat-icon class="add-course-btn">search</mat-icon>
+        </button>
+        
+        <button *ngIf="rol !== 'Coordinador'" (click)="buscarEquipoP()" mat-mini-fab color="accent">
+          <mat-icon class="add-course-btn">search</mat-icon>
+        </button>
+        
+      </div>
+
+    </form>
+    
+      <equipos-card-list [equipos]="equiposList"></equipos-card-list>
+    
+    <button mat-raised-button color="primary" (click)="volverPaginaAnterior()" class="button">Volver</button>
+
+  
+</div>
+

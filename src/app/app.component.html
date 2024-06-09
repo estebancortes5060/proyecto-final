@@ -1,0 +1,76 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav #start (click)="start.close()">
+    <mat-nav-list>
+
+      <a mat-list-item >
+        <mat-icon>library_books</mat-icon>
+        <span>Principal</span>
+      </a>
+      <a mat-list-item routerLink="/about">
+        <mat-icon>question_answer</mat-icon>
+        <span>Nosotros</span>
+      </a>
+      <a mat-list-item routerLink="/main" *ngIf="usuarioAutenticado">
+        <mat-icon>library_books</mat-icon>
+        <span>Equipos</span>
+      </a>
+      <a mat-list-item routerLink="/portales"  *ngIf="rol === 'Coordinador' && usuarioAutenticado">
+        <mat-icon>library_books</mat-icon>
+        <span>Portales</span>
+      </a>
+      <a mat-list-item routerLink="/logLista" *ngIf="rol === 'Coordinador' && usuarioAutenticado">
+        <mat-icon>description</mat-icon>
+        <span>Revisiones - Historial</span>
+      </a>
+      <a mat-list-item routerLink="/reportes" *ngIf="rol === 'Guia Tic' && usuarioAutenticado">
+        <mat-icon>leaderboard</mat-icon>
+        <span>Reportes</span> 
+      </a>
+      <a mat-list-item routerLink="/reportes-all" *ngIf="rol === 'Coordinador' && usuarioAutenticado" >
+        <mat-icon>leaderboard</mat-icon>
+        <span>Reportes</span>
+      </a>
+      <a mat-list-item routerLink="/usuarios" *ngIf="rol === 'Coordinador' && usuarioAutenticado">
+        <mat-icon>supervisor_account</mat-icon>
+        <span>Control de usuarios</span>
+      </a>
+      <a mat-list-item routerLink="/registrar" *ngIf="rol === 'Coordinador' && usuarioAutenticado">
+        <mat-icon>person_add</mat-icon>
+        <span>Crear Usuario</span>
+      </a>
+      <a mat-list-item routerLink="/portal"  *ngIf="rol === 'Coordinador' && usuarioAutenticado">
+        <mat-icon>library_books</mat-icon>
+        <span>Crear Portal</span>
+      </a>
+
+      <a mat-list-item routerLink="/login" *ngIf="!usuarioAutenticado">
+        <mat-icon>account_circle</mat-icon>
+        <span>Login</span>  
+      </a>
+      <a mat-list-item (click)="logout()" *ngIf="usuarioAutenticado">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Salir</span>
+      </a>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <div class="toolbar-tools">
+      <button mat-icon-button (click)="start.open('mouse')">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="filler"></div>
+      <span class="toolbar-title" (click)="redirigirAMain()">INFOSTOCK</span>
+      <ng-container *ngIf="usuarioAutenticado && photoUrl !== null" >
+        <img class="user-avatar" [src]="photoUrl" alt="User Avatar">
+      </ng-container>
+    </div>
+  </mat-toolbar>
+  
+
+  <router-outlet></router-outlet>
+
+</mat-sidenav-container>

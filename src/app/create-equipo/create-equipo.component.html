@@ -1,0 +1,131 @@
+<div class="create-equipo">
+
+  <h3>Registrar nuevo equipo</h3>
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Seleccione tipo de dispositivo" formControlName="tipoDispositivo"
+        (selectionChange)="resetCheckboxes()">
+        <mat-option value="Escritorio">Computador de Escritorio</mat-option>
+        <mat-option value="Portatil">Portatil</mat-option>
+        <mat-option value="Impresora">Impresora</mat-option>
+        <mat-option value="Proyector">Proyector de video</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input placeholder="Modelo" matInput formControlName="modelo">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Sistema operativo" formControlName="sO" (selectionChange)="resetCheckboxes()">
+        <mat-option value="Windows">Windows</mat-option>
+        <mat-option value="MacOS">MacOS</mat-option>
+        <mat-option value="Linux">Linux</mat-option>
+        <mat-option value="NO">No tiene</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Estado" formControlName="estado" (selectionChange)="resetCheckboxes()">
+        <mat-option value="Excelente">Excelente</mat-option>
+        <mat-option value="Bueno">Bueno</mat-option>
+        <mat-option value="Regular">Regular</mat-option>
+        <mat-option value="Malo">Malo</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Tipo de conexion" formControlName="tipoConRed" (selectionChange)="resetCheckboxes()">
+        <mat-option value="Ethernet">Ethernet (por cable)</mat-option>
+        <mat-option value="WiFi">Wi-Fi (inalámbrico)</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+      <textarea matInput placeholder="Descripcion" formControlName="descripcion"></textarea>
+
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+
+      <input placeholder="Serie" matInput formControlName="serie">
+
+    </mat-form-field>
+
+    <ng-container *ngIf="rol === 'Coordinador'">
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Portal TIC" formControlName="selectPortales" required>
+          <mat-option *ngFor="let x of portales" [value]="x.nombrePortal">{{ x.nombrePortal }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+
+    <ng-container *ngIf="rol !== 'Coordinador'">
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Portal TIC" formControlName="selectPortales" required>
+          <mat-option [value]="portal">{{ portal }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+
+    <div *ngIf="form.get('selectPortales').value !== ''">
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Seleccione sala" formControlName="sala" required>
+          <ng-container *ngIf="getSelectedPortal()">
+            <mat-option *ngFor="let sala of getSelectedPortal().salas | numberArray" [value]="sala">
+              {{ 'Sala ' + sala }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="form.get('tipoDispositivo').value === 'Proyector'">
+      <p>Su equipo de computo incluye:</p>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="Parlantes">Parlantes
+      </mat-checkbox>
+    </div>
+    <div *ngIf="form.get('tipoDispositivo').value === 'Portatil'" class="mat-checkbox-group">
+      <p>Su equipo de computo incluye:</p>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="Maus">Maus
+      </mat-checkbox>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="Cargador">Cargador
+      </mat-checkbox>
+    </div>
+    <div *ngIf="form.get('tipoDispositivo').value === 'Escritorio'" class="mat-checkbox-group">
+      <p>Su equipo de computo incluye:</p>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="Maus">Maus
+      </mat-checkbox>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="Teclado">Teclado
+      </mat-checkbox>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="Monitor">Monitor
+      </mat-checkbox>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="Parlantes">Parlantes
+      </mat-checkbox>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="Diadema">Diadema
+      </mat-checkbox>
+      <mat-checkbox>
+        <input type="checkbox" formControlName="CPU">CPU
+      </mat-checkbox>
+    </div>
+
+    <br>
+
+    <button mat-raised-button color="warn" [disabled]="!form.valid" (click)="onCreateEquipo()">
+      Registrar Equipo
+    </button>
+  </form>
+  <div>
+    <button mat-raised-button color="primary" class="volver" (click)="volverPaginaAnterior()">Volver</button>
+  </div>
+
+</div>

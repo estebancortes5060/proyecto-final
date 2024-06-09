@@ -1,0 +1,22 @@
+    <div class="equipo-panel">
+        <div class="header">
+            <h2 class="title">Todos los equipos</h2>
+            <button mat-mini-fab color="accent" routerLink="/create-equipo">
+                <mat-icon class="add-course-btn">add</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent" routerLink="/search-equipo">
+                <mat-icon class="add-course-btn">search</mat-icon>
+            </button>
+            <app-descargar-excel></app-descargar-excel>
+        </div>
+        <mat-tab-group>
+            <mat-tab *ngFor="let portal of portales" [label]="portal.nombrePortal">
+                <button *ngFor="let sala of getSalas(portal.salas)" (click)="toggleSala(sala)" class="button" style="cursor: pointer;">Sala {{sala}}</button>
+                <div *ngFor="let sala of getSalas(portal.salas)">
+                    <ng-container *ngIf="isAllowed(portal)">
+                        <equipos-card-list *ngIf="mostrarSalas[sala]" [equipos]="portalEquipos[portal.nombrePortal][sala - 1]" (equipoEdited)="reloadEquipos()" (equipoDeleted)="reloadEquipos()"></equipos-card-list>
+                    </ng-container>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>

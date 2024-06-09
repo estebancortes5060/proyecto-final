@@ -1,0 +1,30 @@
+
+
+.equipo-panel {
+    max-width: 400px;
+    margin: 10px auto 0 auto;
+}
+
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    margin-right: 15px;
+}
+.button {
+    font-size: 17px;         /* Tamaño de fuente más grande */
+    border: 1px solid grey;           
+    border-radius: 10px;     /* Bordes redondeados */
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.mat-green {
+    background-color: green;
+    color: white; /* Esto cambia el color del icono a blanco para que sea visible en el fondo verde */
+}

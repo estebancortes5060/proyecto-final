@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Editar Portal</h2>
+<mat-dialog-content class="dialog-content">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Localidad" [(ngModel)]="portales.localidad">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Barrio" [(ngModel)]="portales.barrio">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Direccion" [(ngModel)]="portales.direccion">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Salas" type="number" [(ngModel)]="portales.salas">
+  </mat-form-field>
+  
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+  <button mat-button color="primary" (click)="guardar()">Guardar</button>
+</mat-dialog-actions>

@@ -1,0 +1,47 @@
+
+<div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title class="login-title mb-3">Nuevo Portal</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="formulario" (ngSubmit)="crearPortal()">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre Portal</mat-label>
+            <input matInput placeholder="Nombre portal" formControlName="nombre">
+            <mat-error *ngIf="formulario.get('nombre').hasError('required')">Nombre es requerido.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Direccion</mat-label>
+            <input matInput placeholder="Direccion" formControlName="direccion">
+            <mat-error *ngIf="formulario.get('direccion').hasError('required')">Direccion es requerida.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Localidad</mat-label>
+            <input matInput placeholder="Localidad" formControlName="localidad">
+            <mat-error *ngIf="formulario.get('localidad').hasError('required')">Localidad es requerida.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Barrio</mat-label>
+            <input matInput placeholder="Barrio" formControlName="barrio">
+            <mat-error *ngIf="formulario.get('barrio').hasError('required')">Barrio es requerido.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Numero Salas</mat-label>
+            <input matInput placeholder="No. Salas" type="number" formControlName="salas">
+            <mat-error *ngIf="formulario.get('salas').hasError('required')">Numero de salas requerido</mat-error>
+          </mat-form-field>
+          
+          <div class="login-button">
+            <button mat-raised-button type="submit" class="login-button-start" [disabled]="formulario.invalid">Crear</button>
+          </div>
+        </form>
+  
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

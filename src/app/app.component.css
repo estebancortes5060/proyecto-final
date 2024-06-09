@@ -1,0 +1,21 @@
+.toolbar-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinear elementos a los extremos */
+  width: 100%;
+  padding: 0 16px; /* Añadir relleno a ambos lados para separar de los extremos */
+}
+
+.user-avatar {
+  max-height: 35px;
+  border-radius: 4px;
+}
+
+.toolbar-title {
+  flex: 1; /* Ocupa el espacio restante */
+  text-align: center; /* Centrar el texto */
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+  cursor: pointer;
+}

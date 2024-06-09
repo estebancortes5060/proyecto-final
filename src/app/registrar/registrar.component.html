@@ -1,0 +1,54 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title class="login-title mb-3">Crear cuenta</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="formulario" (ngSubmit)="registrarUser()">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre usuario</mat-label>
+          <input matInput placeholder="Nombre usuario" formControlName="nombre">
+          <mat-error *ngIf="formulario.get('nombre').hasError('required')">Nombre es requerido.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Correo Electrónico</mat-label>
+          <input matInput placeholder="Correo Electrónico" type="email" formControlName="email">
+          <mat-error *ngIf="formulario.get('email').hasError('required')">Correo es requerido.</mat-error>
+          <mat-error *ngIf="formulario.get('email').hasError('email')">Correo electrónico no válido.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput placeholder="Contraseña" type="password" formControlName="contraseña">
+          <mat-error *ngIf="formulario.get('contraseña').hasError('required')">Contraseña es requerida.</mat-error>
+          <mat-error *ngIf="formulario.get('contraseña').hasError('minlength')">Contraseña debe tener al menos 6 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="rol" (selectionChange)="cargarPortales()" required>
+            <mat-option value="Guia Tic">Guia Tic</mat-option>
+            <mat-option value="Coordinador">Coordinador</mat-option>
+          </mat-select>
+          <mat-error *ngIf="formulario.get('rol').hasError('required')">Rol es requerido.</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Portal Asignado</mat-label>
+          <mat-select formControlName="selectPortales" required>
+            <mat-option *ngIf="formulario.get('rol').value === 'Coordinador'" value="all">Todos los Portales</mat-option>
+            <mat-option *ngFor="let portal of portales" [value]="portal.nombrePortal">{{ portal.nombrePortal }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="formulario.get('selectPortales').hasError('required')">Portal es requerido.</mat-error>
+        </mat-form-field>
+      
+        <div class="login-button">
+          <button mat-raised-button type="submit" class="login-button-start" [disabled]="formulario.invalid">Registrarse</button>
+        </div>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+

@@ -1,0 +1,260 @@
+<div #reporte class="reporte-container">
+
+    <div class="titulo-container">
+        <h1 class="titulo">REPORTES PORTAL:</h1>
+        <button mat-mini-fab class="mat-red" (click)="downloadPDF()">
+            <mat-icon class="add-course-btn">download</mat-icon>
+        </button>
+    </div>
+
+    <h1 class="titulodos">Fecha informe: {{ this.fecha }}</h1>
+    <p class="parrafo">El informe de reportes es una herramienta que muestra gráficamente estadísticas sobre el estado
+        de
+        los equipos y sus respectivos mantenimientos. Permite una fácil comprensión de datos importantes sobre el
+        rendimiento
+        de los equipos y la eficacia de los mantenimientos. Esto ayuda a tomar decisiones informadas y a identificar
+        áreas
+        de
+        mejora en la gestión de los activos tecnológicos.</p>
+
+    <h1 class="titulotres">Estadísticas portales</h1>
+
+    <div class="centrado">
+        <div class="grafico">
+            <div class="titulo-parrafo-container">
+                <h2 class="titulo-grafico">Gráfico Portales X Salas</h2>
+            </div>
+            <div class="select-container">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Selecciona un equipo" [(ngModel)]="selectedOptionUno">
+                        <mat-option value="ver">Mostrar tabla</mat-option>
+                        <mat-option>No mostrar tabla</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="cGUno && selectedOptionUno === 'ver'">
+                <div class="titulo-parrafo-container">
+                    <p class="parrafo-grafico">Este gráfico muestra la cantidad de portales por cada sala existente,
+                        ofreciendo una visión rápida de su distribución y uso.</p>
+                </div>
+                <div class="container">
+                    <ngx-charts-bar-vertical [view]="cGUno.view" [scheme]="cGUno.colorScheme"
+                        [results]="datosGraficoUno" [gradient]="cGUno.gradient" [xAxis]="cGUno.showXAxis"
+                        [yAxis]="cGUno.showYAxis" [legend]="cGUno.showLegend" [showXAxisLabel]="cGUno.showXAxisLabel"
+                        [showYAxisLabel]="cGUno.showYAxisLabel" [xAxisLabel]="cGUno.xAxisLabel"
+                        [yAxisLabel]="cGUno.yAxisLabel">
+                    </ngx-charts-bar-vertical>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="parrafo-seleccion">Selecciona un portal para el reporte del mismo:</p>
+    <ng-container>
+        <mat-form-field appearance="outline">
+            <mat-select placeholder="Portal TIC" [(ngModel)]="selectedOption" (ngModelChange)="graficoDos($event); graficoTres($event); graficoCuatro($event); graficoCinco($event); 
+                graficoSeis($event); graficoSiete($event); graficoOcho($event); graficoNueve($event); graficoDiez($event); 
+                graficoOnce($event); graficoDoce($event); graficoTrece($event)">
+                <mat-option *ngFor="let x of portales" [value]="x.nombrePortal">{{ x.nombrePortal }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </ng-container>
+
+    <h1 class="titulotres">Estadísticas equipos por portal</h1>
+
+    <dev class="container" *ngIf="cGDos && selectedOption">
+        <div class="titulo-parrafo-container">
+            <h2 class="titulo-grafico">Gráfico Equipos X Salas</h2>
+            <p class="parrafo-grafico">Este gráfico muestra la cantidad de equipos en cada sala del portal,
+                proporcionando
+                una
+                visión rápida de su distribución y utilización.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGDos.view" [scheme]="cGDos.colorScheme" [results]="datosGraficoDos"
+            [gradient]="cGDos.gradient" [xAxis]="cGDos.showXAxis" [yAxis]="cGDos.showYAxis" [legend]="cGDos.showLegend"
+            [showXAxisLabel]="cGDos.showXAxisLabel" [showYAxisLabel]="cGDos.showYAxisLabel"
+            [xAxisLabel]="cGDos.xAxisLabel" [yAxisLabel]="cGDos.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGSiete && selectedOption">
+        <div class="titulo-parrafo-container">
+            <h2 class="titulo-grafico">Gráfico Equipos X Tipo de dispositivo</h2>
+            <p class="parrafo-grafico">Este gráfico muestra la cantidad de equipos por cada tipo de dispositivo en el
+                portal,
+                ofreciendo una visión rápida de su distribución y uso.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGSiete.view" [scheme]="cGSiete.colorScheme" [results]="datosGraficoSiete"
+            [gradient]="cGSiete.gradient" [xAxis]="cGSiete.showXAxis" [yAxis]="cGSiete.showYAxis"
+            [legend]="cGSiete.showLegend" [showXAxisLabel]="cGSiete.showXAxisLabel"
+            [showYAxisLabel]="cGSiete.showYAxisLabel" [xAxisLabel]="cGSiete.xAxisLabel"
+            [yAxisLabel]="cGSiete.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGTres && selectedOption">
+        <div class="titulo-parrafo-container">
+            <p class="parrafo-grafico">COMPUTADOR DE ESCRITORIO.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGTres.view" [scheme]="cGTres.colorScheme" [results]="datosGraficoTres"
+            [gradient]="cGTres.gradient" [xAxis]="cGTres.showXAxis" [yAxis]="cGTres.showYAxis"
+            [legend]="cGTres.showLegend" [showXAxisLabel]="cGTres.showXAxisLabel"
+            [showYAxisLabel]="cGTres.showYAxisLabel" [xAxisLabel]="cGTres.xAxisLabel" [yAxisLabel]="cGTres.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGCuatro && selectedOption">
+        <div class="titulo-parrafo-container">
+            <p class="parrafo-grafico">PORTATIL.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGCuatro.view" [scheme]="cGCuatro.colorScheme" [results]="datosGraficoCuatro"
+            [gradient]="cGCuatro.gradient" [xAxis]="cGCuatro.showXAxis" [yAxis]="cGCuatro.showYAxis"
+            [legend]="cGCuatro.showLegend" [showXAxisLabel]="cGCuatro.showXAxisLabel"
+            [showYAxisLabel]="cGCuatro.showYAxisLabel" [xAxisLabel]="cGCuatro.xAxisLabel"
+            [yAxisLabel]="cGCuatro.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGCinco && selectedOption">
+        <div class="titulo-parrafo-container">
+            <p class="parrafo-grafico">IMPRESORA.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGCinco.view" [scheme]="cGCinco.colorScheme" [results]="datosGraficoCinco"
+            [gradient]="cGCinco.gradient" [xAxis]="cGCinco.showXAxis" [yAxis]="cGCinco.showYAxis"
+            [legend]="cGCinco.showLegend" [showXAxisLabel]="cGCinco.showXAxisLabel"
+            [showYAxisLabel]="cGCinco.showYAxisLabel" [xAxisLabel]="cGCinco.xAxisLabel"
+            [yAxisLabel]="cGCinco.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGSeis && selectedOption">
+        <div class="titulo-parrafo-container">
+            <p class="parrafo-grafico">.PROYECTOR DE VIDEO.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGSeis.view" [scheme]="cGSeis.colorScheme" [results]="datosGraficoSeis"
+            [gradient]="cGSeis.gradient" [xAxis]="cGSeis.showXAxis" [yAxis]="cGSeis.showYAxis"
+            [legend]="cGSeis.showLegend" [showXAxisLabel]="cGSeis.showXAxisLabel"
+            [showYAxisLabel]="cGSeis.showYAxisLabel" [xAxisLabel]="cGSeis.xAxisLabel" [yAxisLabel]="cGSeis.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGOcho && selectedOption">
+        <div class="titulo-parrafo-container">
+            <h2 class="titulo-grafico">Gráfico Equipos X Estado</h2>
+            <p class="parrafo-grafico">El gráfico presenta la cantidad de equipos según su estado: excelente, bueno,
+                regular
+                y
+                malo.
+                Esta visualización permite evaluar rápidamente la distribución de equipos en cada categoría y
+                identificar
+                áreas
+                de mejora.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGOcho.view" [scheme]="cGOcho.colorScheme" [results]="datosGraficoOcho"
+            [gradient]="cGOcho.gradient" [xAxis]="cGOcho.showXAxis" [yAxis]="cGOcho.showYAxis"
+            [legend]="cGOcho.showLegend" [showXAxisLabel]="cGOcho.showXAxisLabel"
+            [showYAxisLabel]="cGOcho.showYAxisLabel" [xAxisLabel]="cGOcho.xAxisLabel" [yAxisLabel]="cGOcho.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGNueve && selectedOption">
+        <div class="titulo-parrafo-container">
+            <h2 class="titulo-grafico">Gráfico Equipos X Sistema operativo</h2>
+            <p class="parrafo-grafico">"El gráfico muestra la cantidad de equipos según su sistema operativo, ya sea
+                macOS,
+                Windows, Linux
+                o sin sistema operativo. Esta representación visual facilita la comprensión de la distribución de
+                equipos en
+                cada plataforma,
+                brindando información crucial para la gestión y mantenimiento de los activos informáticos.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGNueve.view" [scheme]="cGNueve.colorScheme" [results]="datosGraficoNueve"
+            [gradient]="cGNueve.gradient" [xAxis]="cGNueve.showXAxis" [yAxis]="cGNueve.showYAxis"
+            [legend]="cGNueve.showLegend" [showXAxisLabel]="cGNueve.showXAxisLabel"
+            [showYAxisLabel]="cGNueve.showYAxisLabel" [xAxisLabel]="cGNueve.xAxisLabel"
+            [yAxisLabel]="cGNueve.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGDiez && selectedOption">
+        <div class="titulo-parrafo-container">
+            <h2 class="titulo-grafico">Gráfico Equipos X Tipo de red</h2>
+            <p class="parrafo-grafico">El gráfico ilustra la cantidad de equipos por tipo de red, ya sea Wi-Fi o
+                Ethernet.
+                Esta representación
+                visual proporciona una visión clara de cómo están distribuidos los dispositivos según el tipo de
+                conexión de
+                red
+                utilizada. Esto
+                es fundamental para comprender la infraestructura de red y optimizar su rendimiento.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGDiez.view" [scheme]="cGDiez.colorScheme" [results]="datosGraficoDiez"
+            [gradient]="cGDiez.gradient" [xAxis]="cGDiez.showXAxis" [yAxis]="cGDiez.showYAxis"
+            [legend]="cGDiez.showLegend" [showXAxisLabel]="cGDiez.showXAxisLabel"
+            [showYAxisLabel]="cGDiez.showYAxisLabel" [xAxisLabel]="cGDiez.xAxisLabel" [yAxisLabel]="cGDiez.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <h1 class="titulotres">Estadísticas mantenimientos</h1>
+
+    <dev class="container" *ngIf="cGOnce && selectedOption">
+        <div class="titulo-parrafo-container">
+            <h2 class="titulo-grafico">Gráfico mantenimientos X Serie equipo</h2>
+            <p class="parrafo-grafico">Este gráfico representa la cantidad de mantenimientos realizados en cada equipo,
+                mostrando el número de serie
+                de cada uno. Proporciona una visión detallada de la frecuencia de mantenimiento para cada dispositivo,
+                lo que
+                permite una mejor gestión
+                y planificación de los servicios de mantenimiento.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGOnce.view" [scheme]="cGOnce.colorScheme" [results]="datosGraficoOnce"
+            [gradient]="cGOnce.gradient" [xAxis]="cGOnce.showXAxis" [yAxis]="cGOnce.showYAxis"
+            [legend]="cGOnce.showLegend" [showXAxisLabel]="cGOnce.showXAxisLabel"
+            [showYAxisLabel]="cGOnce.showYAxisLabel" [xAxisLabel]="cGOnce.xAxisLabel" [yAxisLabel]="cGOnce.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGDoce && selectedOption">
+        <div class="titulo-parrafo-container">
+            <h2 class="titulo-grafico">Gráfico Mantenimientos X Salas</h2>
+            <p class="parrafo-grafico">El siguiente gráfico muestra la cantidad de mantenimientos realizados en cada
+                sala
+                del
+                portal. Esta visualización proporciona una perspectiva detallada de la distribución de los
+                mantenimientos a lo
+                largo
+                de las diferentes áreas del portal, lo que puede ser útil para identificar patrones o áreas que
+                requieren
+                mayor atención.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGDoce.view" [scheme]="cGDoce.colorScheme" [results]="datosGraficoDoce"
+            [gradient]="cGDoce.gradient" [xAxis]="cGDoce.showXAxis" [yAxis]="cGDoce.showYAxis"
+            [legend]="cGDoce.showLegend" [showXAxisLabel]="cGDoce.showXAxisLabel"
+            [showYAxisLabel]="cGDoce.showYAxisLabel" [xAxisLabel]="cGDoce.xAxisLabel" [yAxisLabel]="cGDoce.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+    <dev class="container" *ngIf="cGTrece && selectedOption">
+        <div class="titulo-parrafo-container">
+            <h2 class="titulo-grafico">Gráfico Mantenimientos X Tipo de dispositivo</h2>
+            <p class="parrafo-grafico">Este gráfico ilustra la cantidad de mantenimientos realizados según el tipo de
+                dispositivo en el
+                portal. Proporciona una visión detallada de cómo se distribuyen los mantenimientos entre los diferentes
+                tipos
+                de dispositivos,
+                ya sean computadoras de escritorio, portátiles, impresoras u otros. Esta información puede ser valiosa
+                para
+                priorizar las acciones
+                de mantenimiento y la asignación de recursos.</p>
+        </div>
+        <ngx-charts-bar-vertical [view]="cGTrece.view" [scheme]="cGTrece.colorScheme" [results]="datosGraficoTrece"
+            [gradient]="cGTrece.gradient" [xAxis]="cGTrece.showXAxis" [yAxis]="cGTrece.showYAxis"
+            [legend]="cGTrece.showLegend" [showXAxisLabel]="cGTrece.showXAxisLabel"
+            [showYAxisLabel]="cGTrece.showYAxisLabel" [xAxisLabel]="cGTrece.xAxisLabel"
+            [yAxisLabel]="cGTrece.yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </dev>
+
+
+
+</div>

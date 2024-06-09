@@ -1,0 +1,44 @@
+<mat-card *ngFor="let equipo of equipos" class="equipo-card mat-elevation-z10">
+
+  <mat-card-header class="info-row">
+    <mat-card-title >
+      <span>Serie: {{equipo.serie}}</span>
+    </mat-card-title>
+  </mat-card-header>
+ 
+  <mat-card-content>
+    <div class="image-container">
+      <img mat-card-image [src]="equipo.url" class="small-image">
+    </div>
+    <p>Modelo: {{equipo.modelo}}</p>
+    <p>Tipo de dispositivo: {{equipo.tipoDispositivo}}</p>
+    <p>Sistema operativo: {{equipo.sO}}</p>
+    <p>Tipo conexión a red: {{equipo.tipoConRed}}</p>
+    <p>Estado: {{equipo.estado}}</p>
+    <p>Descripcion: {{equipo.descripcion}}</p>
+      <ng-container *ngIf="equipo.partes && equipo.partes.length > 0">
+        <p>Partes: {{equipo.partes}}</p>
+      </ng-container>
+  </mat-card-content>
+  <mat-card-actions class="equipo-actions">
+
+    <button mat-button class="mat-raised-button mat-primary" [routerLink]="['/equipos', equipo.codigo]">
+      MANTENIMIENTOS
+    </button>
+    <ng-container>
+      <ng-container>
+        <button mat-mini-fab class="mat-raised-button mat-accent"
+                (click)="editEquipo(equipo)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" (click)="confirmDelete(equipo)" *ngIf="rol === 'Coordinador'">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+    </ng-container>
+
+  </mat-card-actions>
+
+
+
+</mat-card>

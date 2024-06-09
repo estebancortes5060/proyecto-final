@@ -1,0 +1,112 @@
+/* Estilos para el título */
+.titulo-container {
+    display: flex;
+    align-items: center; /* Alinear verticalmente los elementos */
+    justify-content: center; /* Centrar horizontalmente */
+  }
+  .titulo {
+    text-align: center; /* Centrar el texto */
+    margin-top: 30px; /* Añadir margen superior */
+    margin-right: 10px; /* Espacio entre el título y el botón */
+    font-weight: bold; /* Hacer el título más grueso */
+  }
+  .titulodos {
+    text-align: center; /* Centrar el texto */
+    margin-bottom: 40px; /* Añadir margen inferior para separar del siguiente contenido */
+  }
+  .titulotres {
+    text-align: center; /* Centrar el texto */
+    margin-top: 40px;
+    margin-bottom: 40px; /* Añadir margen inferior para separar del siguiente contenido */
+  }
+  
+  /* Estilos para el párrafo */
+  .parrafo {
+    text-align: center; /* Centrar el texto */
+    margin: 30px auto; /* Añadir margen arriba y abajo y centrar horizontalmente */
+    max-width: 700px; /* Limitar el ancho del párrafo */
+  }
+  
+  /* Estilos para el contenedor de los gráficos */
+  .graficos-container {
+    display: flex; /* Mostrar los gráficos en línea */
+    justify-content: space-around; /* Distribuir los gráficos con espacio alrededor */
+    flex-wrap: wrap; /* Permitir que los gráficos se ajusten automáticamente a la línea siguiente si no hay suficiente espacio */
+  }
+  
+  /* Estilos para cada gráfico */
+  .grafico {
+    width: 400px; /* Establecer el ancho máximo del gráfico */
+    margin-bottom: 20px; /* Margen inferior para separar los gráficos */
+  }
+  
+  .titulo-parrafo-container {
+    margin-bottom: 20px; /* Espacio entre el título/párrafo y el gráfico */
+  }
+  
+  /* Estilos para el título del gráfico */
+  .titulo-grafico {
+    text-align: center; /* Centrar el título */
+  }
+  
+  /* Estilos para el párrafo del gráfico */
+  .parrafo-grafico {
+    text-align: justify; /* Justificar el párrafo */
+  }
+    
+  .contenedor-graficos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .fila {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  
+  .container {
+    width: 45%; /* Ancho de los contenedores de los gráficos */
+    margin-right: 30px; /* Margen derecho para crear espacio entre los contenedores */
+  }
+  
+  .select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+  }
+  
+  .filaTres {
+    display: flex;
+    justify-content: space-around; /* Distribuir los contenedores equitativamente */
+    margin-bottom: 20px;
+  }
+  
+  .centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mat-red {
+    background-color: red;
+    color: white; /* Color del ícono */
+  }
+  
+  .reporte-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Ajusta este valor según sea necesario para el espacio deseado */
+}
+
+.parrafo-seleccion {
+  text-align: center; /* Centrar el texto */
+  margin-top: 30px;
+  margin-bottom: 10px; /* Ajustar el margen inferior según sea necesario */
+}

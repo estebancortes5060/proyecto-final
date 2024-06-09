@@ -1,0 +1,384 @@
+<!-- logLista.component.html -->
+<div class="title-container">
+  <h1 style="color: #ffa726;">Revisiones - Historial</h1>
+</div>
+
+<div class="container">
+  <div class="column">
+    <h2>Información equipos</h2>
+    <p>En esta sección, se encuentra un detallado historial que abarca todas las modificaciones efectuadas en los
+      equipos registrados.
+      Este histórico compendio no solo proporciona un rastreo completo de las alteraciones llevadas a cabo, sino que
+      también revela información crucial sobre
+      quién ejecutó cada acción y a qué equipo específico afectó. Desde la adición de nuevos equipos hasta las
+      actualizaciones y eliminaciones, cada cambio queda
+      meticulosamente documentado, brindando una transparencia total en cuanto a la gestión y evolución de los recursos.
+    </p>
+    <div class="buttons">
+      <button mat-raised-button class="custom-button" style="background-color: #ffa726; color: white;"
+        (click)="mostrarEquipos()">Equipos</button>
+    </div>
+  </div>
+
+  <div class="column">
+    <h2>Información mantenimientos</h2>
+    <p>En esta sección, se encuentra un detallado historial que abarca todas las modificaciones efectuadas en los
+      registros de mantenimiento.
+      Este histórico compendio no solo proporciona un rastreo completo de las alteraciones llevadas a cabo, sino que
+      también revela información crucial sobre quién
+      ejecutó cada acción y en qué mantenimiento específico tuvo lugar. Desde la programación de nuevos mantenimientos
+      hasta las actualizaciones y eliminaciones de
+      registros existentes, cada cambio queda meticulosamente documentado, brindando una transparencia total en cuanto a
+      la gestión y evolución de los procesos de mantenimiento.</p>
+    <div class="buttons">
+      <button mat-raised-button class="custom-button" style="background-color: #ffa726; color: white;"
+        (click)="mostrarMantenimiento()">Mantenimientos</button>
+    </div>
+  </div>
+</div>
+
+<div class="details-container">
+
+  <div *ngIf="mostrarEquiposFlag">
+
+    <br>
+
+
+    <mat-form-field class="custom-select">
+      <mat-label>Selecciona una opción</mat-label>
+      <mat-select [(ngModel)]="selectedOption">
+        <mat-option value="crear">Registro Creación</mat-option>
+        <mat-option value="editar">Registro Edición</mat-option>
+        <mat-option value="eliminar">Registro Eliminación</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="selectedOption === 'crear'">
+      <h3>Información de Equipos Creados</h3>
+      <mat-table class="mat-elevation-z8" [dataSource]="registrosCE">
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef>NOMBRE USUARIO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.nombre }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="equipoId">
+          <mat-header-cell *matHeaderCellDef>ID EQUIPO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.equipoId }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="portal">
+          <mat-header-cell *matHeaderCellDef>PORTAL</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.portal }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sala">
+          <mat-header-cell *matHeaderCellDef>SALA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.sala }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dispositivo">
+          <mat-header-cell *matHeaderCellDef>DISPOSITIVO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.dispositivo }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="serie">
+          <mat-header-cell *matHeaderCellDef>SERIE</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.serie }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef>FECHA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.fecha }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="hora">
+          <mat-header-cell *matHeaderCellDef>HORA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.hora }}</mat-cell>
+        </ng-container>
+
+        <!-- Definición de las columnas a mostrar -->
+        <mat-header-row
+          *matHeaderRowDef="['nombre', 'equipoId', 'portal', 'sala', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: ['nombre', 'equipoId', 'portal', 'sala', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-row>
+      </mat-table>
+    </div>
+
+    <br>
+
+    <div *ngIf="selectedOption === 'editar'">
+      <h3>Información de Equipos Editados</h3>
+      <mat-table class="mat-elevation-z8" [dataSource]="registrosE">
+        <!-- Columnas de la tabla -->
+
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef>NOMBRE USUARIO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.nombre }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="equipoId">
+          <mat-header-cell *matHeaderCellDef>ID EQUIPO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.equipoId }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="portal">
+          <mat-header-cell *matHeaderCellDef>PORTAL</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.portal }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sala">
+          <mat-header-cell *matHeaderCellDef>SALA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.sala }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dispositivo">
+          <mat-header-cell *matHeaderCellDef>DISPOSITIVO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.dispositivo }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="serie">
+          <mat-header-cell *matHeaderCellDef>SERIE</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.serie }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef>FECHA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.fecha }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="hora">
+          <mat-header-cell *matHeaderCellDef>HORA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.hora }}</mat-cell>
+        </ng-container>
+
+        <!-- Definición de las columnas a mostrar -->
+        <mat-header-row
+          *matHeaderRowDef="['nombre', 'equipoId', 'portal', 'sala', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: ['nombre', 'equipoId', 'portal', 'sala', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-row>
+      </mat-table>
+    </div>
+
+    <br>
+
+    <div *ngIf="selectedOption === 'eliminar'">
+      <h3>Información de Equipos Eliminados</h3>
+      <mat-table class="mat-elevation-z8" [dataSource]="registrosD">
+        <!-- Definición de las columnas -->
+
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef>NOMBRE USUARIO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.nombre }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="equipoId">
+          <mat-header-cell *matHeaderCellDef>ID EQUIPO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.equipoId }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="portal">
+          <mat-header-cell *matHeaderCellDef>PORTAL</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.portal }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sala">
+          <mat-header-cell *matHeaderCellDef>SALA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.sala }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dispositivo">
+          <mat-header-cell *matHeaderCellDef>DISPOSITIVO</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.dispositivo }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="serie">
+          <mat-header-cell *matHeaderCellDef>SERIE</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.serie }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef>FECHA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.fecha }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="hora">
+          <mat-header-cell *matHeaderCellDef>HORA</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{ registro.hora }}</mat-cell>
+        </ng-container>
+
+        <!-- Definición de las columnas a mostrar -->
+        <mat-header-row
+          *matHeaderRowDef="['nombre', 'equipoId', 'portal', 'sala', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: ['nombre', 'equipoId', 'portal', 'sala', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-row>
+      </mat-table>
+    </div>
+
+  </div>
+
+
+  <div *ngIf="mostrarMantenimientoFlag">
+
+    <br>
+
+    <mat-form-field class="custom-select">
+      <mat-label>Selecciona una opción</mat-label>
+      <mat-select [(ngModel)]="selectedOption">
+        <mat-option value="crear">Registro Creación</mat-option>
+        <mat-option value="editar">Registro Edición</mat-option>
+        <mat-option value="eliminar">Registro Eliminación</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <div *ngIf="selectedOption === 'crear'">
+    <h3>Información de Mantenimientos Editados</h3>
+    <mat-table class="mat-elevation-z8" [dataSource]="registrosCM">
+      <!-- Columnas de la tabla -->
+
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef>NOMBRE USUARIO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.nombre }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cedula">
+        <mat-header-cell *matHeaderCellDef>CODIGO MANTENIMIENTO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.equipoId }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="codigo">
+        <mat-header-cell *matHeaderCellDef>CODIGO EQUIPO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.codigo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dispositivo">
+        <mat-header-cell *matHeaderCellDef>DISPOSITIVO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.dispositivo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="serie">
+        <mat-header-cell *matHeaderCellDef>SERIE</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.serie }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef>FECHA</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.fecha }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="hora">
+        <mat-header-cell *matHeaderCellDef>HORA</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.hora }}</mat-cell>
+      </ng-container>
+
+      <!-- Definición de las columnas a mostrar -->
+      <mat-header-row
+        *matHeaderRowDef="['nombre', 'cedula', 'codigo', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: ['nombre', 'cedula', 'codigo', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-row>
+    </mat-table>
+  </div>
+
+    <br>
+
+    <div *ngIf="selectedOption === 'editar'">
+    <h3>Información de Mantenimientos Editados</h3>
+    <mat-table class="mat-elevation-z8" [dataSource]="registrosM">
+      <!-- Columnas de la tabla -->
+
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef>NOMBRE USUARIO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.nombre }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cedula">
+        <mat-header-cell *matHeaderCellDef>CODIGO MANTENIMIENTO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.equipoId }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="codigo">
+        <mat-header-cell *matHeaderCellDef>CODIGO EQUIPO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.codigo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dispositivo">
+        <mat-header-cell *matHeaderCellDef>DISPOSITIVO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.dispositivo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="serie">
+        <mat-header-cell *matHeaderCellDef>SERIE</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.serie }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef>FECHA</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.fecha }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="hora">
+        <mat-header-cell *matHeaderCellDef>HORA</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.hora }}</mat-cell>
+      </ng-container>
+
+      <!-- Definición de las columnas a mostrar -->
+      <mat-header-row
+        *matHeaderRowDef="['nombre', 'cedula', 'codigo', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: ['nombre', 'cedula', 'codigo', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-row>
+    </mat-table>
+  </div>
+
+    <br>
+
+    <div *ngIf="selectedOption === 'eliminar'">
+    <h3>Información de Mantenimientos Eliminados</h3>
+    <mat-table class="mat-elevation-z8" [dataSource]="registrosMD">
+      <!-- Columnas de la tabla -->
+
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef>NOMBRE USUARIO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.nombre }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cedula">
+        <mat-header-cell *matHeaderCellDef>CODIGO MANTENIMIENTO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.equipoId }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="codigo">
+        <mat-header-cell *matHeaderCellDef>CODIGO EQUIPO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.codigo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dispositivo">
+        <mat-header-cell *matHeaderCellDef>DISPOSITIVO</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.dispositivo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="serie">
+        <mat-header-cell *matHeaderCellDef>SERIE</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.serie }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef>FECHA</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.fecha }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="hora">
+        <mat-header-cell *matHeaderCellDef>HORA</mat-header-cell>
+        <mat-cell *matCellDef="let registro">{{ registro.hora }}</mat-cell>
+      </ng-container>
+
+      <!-- Definición de las columnas a mostrar -->
+      <mat-header-row
+        *matHeaderRowDef="['nombre', 'cedula', 'codigo', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: ['nombre', 'cedula', 'codigo', 'dispositivo', 'serie', 'fecha', 'hora']"></mat-row>
+    </mat-table>
+  </div>
+  </div>
+
+  <br>
+</div>

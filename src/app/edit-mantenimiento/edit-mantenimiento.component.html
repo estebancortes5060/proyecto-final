@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Editar Mantenimiento</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Nombre" formControlName="nombre">
+
+    </mat-form-field>
+    <mat-form-field>
+
+        <input matInput
+                placeholder="No.Cedula" formControlName="cedula">
+
+    </mat-form-field>
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Telefono" formControlName="telefono">
+
+    </mat-form-field>
+    <mat-form-field>
+
+         <input matInput placeholder="Fecha Inicio" type="date" formControlName="fechaInicio">
+
+    </mat-form-field>
+    <mat-form-field>
+
+        <input matInput placeholder="Fecha Final" type="date" formControlName="fechaFinal">
+
+    </mat-form-field>
+    <mat-form-field>
+
+        <textarea matInput placeholder="Descripcion" formControlName="descripcion"></textarea>
+
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
+
+        <mat-select matInput placeholder="Tipo de mantenimiento" formControlName="tMantenimiento">
+          <mat-option value="Preventivo">Preventivo</mat-option>
+          <mat-option value="Correctivo">Correctivo</mat-option>
+        </mat-select>
+  
+      </mat-form-field>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <button mat-raised-button (click)="close()">
+        Cerrar
+    </button>
+
+    <button mat-raised-button color="primary" (click)="confirmSave()">
+        Guardar
+    </button>
+
+</mat-dialog-actions>
+
+

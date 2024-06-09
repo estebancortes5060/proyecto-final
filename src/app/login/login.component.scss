@@ -1,0 +1,89 @@
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.login-title {
+  margin: 25px;
+  font-size: 28px;
+  color: white;
+}
+
+.mat-card-header{
+  background-color: #2979ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.mat-card-content{
+  margin-top: 30px;
+}
+
+.login-button {
+  margin-top: 10px;
+  min-width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-button-start{
+  background-color: #2979ff;
+  color: white; 
+  min-width: 180px;
+
+}
+
+.login-button-register{
+  min-width: 180px;
+}
+
+.link-orden{
+  margin-bottom: 30px;
+}
+
+.link-color {
+  color: #1e88e5; 
+}
+
+.no-underline {
+  text-decoration: none; 
+  display: inline-block; 
+}
+
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+.forgot-password-link {
+  margin-top: 10px; /* Ajusta este valor según sea necesario para el espacio deseado */
+  margin-bottom: 30px; /* Ajusta este valor según sea necesario para el espacio deseado */
+}
+
+.forgot-password-link a {
+  color: #007bff; /* Color azul para el enlace */
+  text-decoration: none; /* Quita el subrayado */
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline; /* Subraya el enlace al pasar el ratón sobre él */
+}

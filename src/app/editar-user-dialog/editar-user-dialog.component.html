@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Editar Usuario</h2>
+<mat-dialog-content class="dialog-content">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Email" [(ngModel)]="usuario.email">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-select placeholder="Portal" [(ngModel)]="usuario.portal">
+      <mat-option *ngFor="let portal of portales" [value]="portal.nombrePortal">{{ portal.nombrePortal }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+  <button mat-button color="primary" (click)="guardar()">Guardar</button>
+</mat-dialog-actions>
+
+
+

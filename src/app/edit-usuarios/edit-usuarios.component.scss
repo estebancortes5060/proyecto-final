@@ -1,0 +1,42 @@
+.header {
+    margin-top: 20px; /* Ajusta el valor según sea necesario */
+  }
+
+.usuarios {
+    text-align: center;
+    max-width: 1500px; /* Ajusta el ancho máximo según tus preferencias */
+    margin: auto; /* Centra la tabla horizontalmente */
+  }
+  
+  .usuarios-table {
+    width: 100%; /* Hace que la tabla ocupe el 100% del ancho disponible */
+  }
+
+  .center-button {
+    display: block;
+    margin: 20px auto; /* Centra el botón horizontalmente y agrega margen superior e inferior */
+  }
+
+  .custom-green-button {
+    background-color: green; /* Cambia el color de fondo según tus preferencias */
+    color: white; /* Cambia el color del texto para que sea legible sobre el fondo verde */
+  }
+
+  .usuarios-table {
+    width: 100%;
+    margin-top: 20px; /* Agrega margen superior para separar la tabla del resto de la interfaz */
+  }
+  
+  .mat-cell.custom-cell {
+    padding: 8px; /* Ajusta el relleno de las celdas según tus preferencias */
+  }
+
+  .coordinador-row {
+    background-color: lightgray; /* Color de fondo para coordinadores */
+  }
+
+  .custom-cell.email-column {
+    width: 200px; /* Ajusta el valor según sea necesario */
+  }
+  
+  

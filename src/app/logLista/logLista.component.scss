@@ -1,0 +1,84 @@
+/* logLista.component.scss */
+
+.title {
+  text-align: center; /* Centrar el título horizontalmente */
+  margin-bottom: 20px; /* Espacio inferior entre el título y las columnas */
+  
+}
+
+.title h1 {
+  font-size: 24px; /* Tamaño del texto del título */
+  font-weight: bold; /* Negrita */
+}
+
+.title-container {
+  margin-top: 20px; /* Espacio superior entre el título y las columnas */
+  margin-bottom: 60px;
+  text-align: center; /* Centrar horizontalmente */
+}
+
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  justify-content: center; /* Centrar columnas horizontalmente */
+  gap: 20px; /* Espacio entre las columnas */
+  margin-top: 20px; /* Espacio superior entre contenedor principal y tablas */
+}
+
+
+/* Estilo para las columnas */
+.column {
+  width: 500px; /* Ancho de las columnas */
+  padding: 10px; /* Espacio interior de las columnas */
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center; /* Centrar contenido horizontalmente */
+}
+
+/* Estilo para los botones */
+.buttons {
+  display: flex;
+  justify-content: center; /* Centrar botones horizontalmente */
+  margin-top: 10px; /* Espacio superior entre el texto y los botones */
+}
+
+.buttons button {
+  margin: 0 5px; /* Espacio entre los botones */
+}
+
+
+/* Estilo para los contenedores de detalles */
+.details-container {
+  margin-top: 20px; /* Espacio superior entre contenedores */
+  margin-bottom: 20px; /* Espacio inferior entre contenedores */
+  margin: 0 auto; /* Centrar horizontalmente */
+  width: 80%; /* Ancho máximo para las tablas */
+}
+
+
+/* Estilo para los títulos de las tablas */
+.details-container h3 {
+  margin-bottom: 10px; /* Espacio inferior entre el título y la tabla */
+}
+
+.custom-select {
+  width: 200px; /* ajusta el ancho según lo necesites */
+  max-width: 100%; /* asegura que el ancho no exceda el 100% del contenedor */
+}
+
+/* Estilos para el mat-select */
+.mat-select {
+  font-size: 16px;
+}
+
+/* Estilos para el mat-option */
+.mat-option {
+  font-size: 14px;
+}
+
+/* Estilos para el mat-label */
+.mat-form-field-label {
+  font-size: 16px;
+}
+  

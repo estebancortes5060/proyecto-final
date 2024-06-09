@@ -1,0 +1,60 @@
+<div class="create-mantenimiento">
+
+    <h3>Registrar Mantenimiento</h3>
+  
+    <form [formGroup]="form">
+  
+      <mat-form-field appearance="outline">
+  
+        <input placeholder="Encargado Mantenimiento" matInput formControlName="nombre">
+  
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+  
+        <input placeholder="No. Cedula" matInput formControlName="cedula" >
+  
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+  
+        <input placeholder="No. Telefono" matInput formControlName="telefono">
+  
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <mat-select placeholder="Seleccione el tipo de mantenimiento" formControlName="tMantenimiento">
+          <mat-option value="Preventivo">Preventivo</mat-option>
+          <mat-option value="Correctivo">Correctivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+  
+      <mat-form-field appearance="outline">
+  
+        <textarea matInput placeholder="Descripcion"
+                  formControlName="descripcion"></textarea>
+  
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Inicio:</mat-label>
+        <input matInput type="date" formControlName="fechaInicio" [max]="fechaActual()">
+      </mat-form-field>
+      
+      <mat-slide-toggle class="fin" color="primary" formControlName="fin">
+        ¿Finalizó el mantenimiento?
+      </mat-slide-toggle>
+      
+      <mat-form-field appearance="outline" *ngIf="form.get('fin').value">
+        <mat-label>Fecha final</mat-label>
+        <input matInput type="date" formControlName="fechaFinal">
+      </mat-form-field>
+      <button mat-raised-button color="warn" [disabled]="!form.valid"
+          (click)="onCreateMantenimiento()">
+        Crear mantenimiento
+    </button>
+    </form>
+    
+    <div>
+      <button class="back-button" mat-raised-button color="primary" (click)="volverPaginaAnterior()">Volver</button>
+    </div>
+  </div>
+  

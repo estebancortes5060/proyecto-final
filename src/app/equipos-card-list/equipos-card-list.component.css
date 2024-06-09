@@ -1,0 +1,33 @@
+
+
+.equipo-card {
+    margin: 20px 5px;
+}
+
+.equipo-actions {
+    text-align: center;
+}
+.equipo-title{
+    text-align: center;
+}
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Opcional: asegura que ocupa todo el espacio disponible */
+    border-bottom: 1px solid #ccc; /* Línea de borde inferior */
+    padding-bottom: 10px; /* Espacio entre la información y la línea */
+    margin-bottom: 10px; /* Espacio entre la línea y el contenido siguiente */
+    width: 100%; 
+}
+.info-row span:not(:last-child)::after {
+    content: "\00a0"; 
+}
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .small-image {
+    width: 200px; /* Puedes ajustar este valor según tus necesidades */
+  }

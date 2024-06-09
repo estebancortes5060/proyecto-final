@@ -1,0 +1,42 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title class="login-title mb-3">Iniciar Sesión</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="formulario" (ngSubmit)="loginUser()">
+        <mat-form-field appearance="fill">
+          <mat-label>Correo Electrónico</mat-label>
+          <input matInput formControlName="email" placeholder="Correo Electrónico" type="email" id="email">
+          <mat-error *ngIf="formulario.get('email').hasError('required')">Correo es requerido.</mat-error>
+          <mat-error *ngIf="formulario.get('email').hasError('email')">Correo electrónico no válido.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="contraseña" id="contraseña" placeholder="Contraseña" type="password"
+            [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="formulario.get('contraseña').hasError('required')">Contraseña es requerida.</mat-error>
+          <mat-error *ngIf="formulario.get('contraseña').hasError('minlength')">Contraseña debe tener al menos 6
+            caracteres.</mat-error>
+        </mat-form-field>
+
+
+        <div *ngIf="resetPasswordSuccess" class="reset-password-success-message">
+          Se ha enviado un correo electrónico de restablecimiento de contraseña. Por favor, revisa tu bandeja de
+          entrada.
+        </div>
+
+        <div class="forgot-password-link">
+          <a mat-button routerLink="/reset-password" target="_blank">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <div class="login-button">
+          <button mat-raised-button type="submit" class="login-button-start" [disabled]="formulario.invalid">Iniciar
+            Sesión</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

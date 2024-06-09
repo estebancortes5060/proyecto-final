@@ -1,0 +1,17 @@
+.full-width {
+    width: 100%;
+  }
+  
+  .dialog-content {
+    padding: 0 24px; /* Ajusta el espacio alrededor del contenido */
+  }
+  
+  .mat-dialog-actions {
+    justify-content: flex-end; /* Coloca los botones a la derecha */
+  }
+  
+  button[color="primary"] {
+    background-color: #1976d2; /* Cambia el color de fondo del botón a azul */
+    color: white; /* Cambia el color del texto a blanco */
+  }
+  

@@ -1,0 +1,63 @@
+<div class="usuarios">
+
+    <div class="header">
+      <h2 class="title">PORTALES TIC</h2>
+    </div>  
+  
+    <div class="search-bar">
+        <div class="search-bar">
+            <mat-form-field appearance="fill">
+              <mat-label>Buscar nombre portal</mat-label>
+              <input matInput placeholder="Nombre" [(ngModel)]="consulta">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="buscarPortales()">Buscar</button>
+          </div>
+        <button mat-raised-button (click)="mostrarTodos()" class="center-button" class="custom-green-button">Mostrar TODO</button>
+    </div>
+  
+    <div class="spinner-container" *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+  
+    <mat-table class="usuarios-table mat-elevation-z8" [dataSource]="portales">
+        <ng-container matColumnDef="nombrePortal">
+          <mat-header-cell *matHeaderCellDef [style.width]="'100px'">NOMBRE PORTAL</mat-header-cell>
+          <mat-cell class="custom-cell" *matCellDef="let portal">{{ portal.nombrePortal }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="salas">
+            <mat-header-cell *matHeaderCellDef class="custom-cell email-column">SALAS</mat-header-cell>
+            <mat-cell class="custom-cell email-column" *matCellDef="let portal">{{ portal.salas }}</mat-cell>
+        </ng-container> 
+        <ng-container matColumnDef="localidad">
+          <mat-header-cell *matHeaderCellDef>LOCALIDAD</mat-header-cell>
+          <mat-cell class="custom-cell" *matCellDef="let portal">{{ portal.localidad }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="barrio">
+          <mat-header-cell *matHeaderCellDef>BARRIO</mat-header-cell>
+          <mat-cell class="custom-cell" *matCellDef="let portal">{{ portal.barrio }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="direccion">
+            <mat-header-cell *matHeaderCellDef>DIRECCION</mat-header-cell>
+            <mat-cell class="custom-cell" *matCellDef="let portal">{{ portal.direccion }}</mat-cell>
+          </ng-container>
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef>ACCIONES</mat-header-cell>
+          <mat-cell class="custom-cell" *matCellDef="let portal">
+
+            <button mat-icon-button color="primary" (click)="editarPortal(portal)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            
+            <button mat-icon-button color="warn" (click)="eliminarPortal(portal)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            
+          </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns" ></mat-row>
+      </mat-table>
+      
+  
+  </div>

@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>Editar equipo</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+  <mat-form-field>
+    <input matInput placeholder="Modelo" formControlName="modelo">
+  </mat-form-field> 
+
+  <mat-form-field appearance="outline">
+    <mat-select placeholder="Sistema operativo" formControlName="sO" (selectionChange)="resetCheckboxes()">
+      <mat-option value="Windows">Windows</mat-option>
+      <mat-option value="MacOS">MacOS</mat-option>
+      <mat-option value="Linux">Linux</mat-option>
+      <mat-option value="NO">No tiene</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-select placeholder="Estado" formControlName="estado" (selectionChange)="resetCheckboxes()">
+      <mat-option value="Excelente">Excelente</mat-option>
+      <mat-option value="Bueno">Bueno</mat-option>
+      <mat-option value="Regular">Regular</mat-option>
+      <mat-option value="Malo">Malo</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-select placeholder="Tipo de conexion" formControlName="tipoConRed" (selectionChange)="resetCheckboxes()">
+      <mat-option value="Ethernet">Ethernet (por cable)</mat-option>
+      <mat-option value="WiFi">Wi-Fi (inalámbrico)</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Descripcion" formControlName="descripcion">
+        </textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-select placeholder="Seleccione sala" formControlName="sala">
+      <mat-option *ngFor="let sala of salasArray" [value]="sala">{{ 'Sala ' + sala }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <button mat-raised-button (click)="close()">
+    Cerrar
+  </button>
+
+  <button mat-raised-button color="primary" (click)="confirmSave()">
+    Guardar
+  </button>
+
+</mat-dialog-actions>
